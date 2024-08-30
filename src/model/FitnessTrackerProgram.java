@@ -145,7 +145,7 @@ public class FitnessTrackerProgram {
     }
 
     private void printChoices() {
-        System.out.println("\nTo operate on your workout, please choose desired option:");
+        System.out.println("\nTo operate on your workout '" + workoutFileName + "', please choose desired option:");
         System.out.println("--------------------------------");
         System.out.println("## MAIN MENU ##\nFollowing are your options: \n");
         System.out.println("1: Insert an exercise");
