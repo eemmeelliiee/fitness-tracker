@@ -107,7 +107,7 @@ public class FitnessTrackerProgram {
                     if (parts.length == 2) {
                         Exercise exercise = new Exercise();
                         exercise.setName(parts[0].trim());
-                        exercise.setDuration(Integer.parseInt(parts[1].trim()));
+                        exercise.setReps(Integer.parseInt(parts[1].trim()));
                         exercises[index++] = exercise;
                     }
                 }
@@ -135,7 +135,7 @@ public class FitnessTrackerProgram {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(file))) {
             for (Exercise exercise : exercises) {
                 if (exercise != null) {
-                    writer.write(exercise.getName() + "," + exercise.getDuration());
+                    writer.write(exercise.getName() + "," + exercise.getReps());
                     writer.newLine();
                 }
             }
@@ -177,7 +177,7 @@ public class FitnessTrackerProgram {
             int i = 1;
             for (Exercise tempExercise : exercises) {
                 if (tempExercise != null) {
-                    System.out.println(i + ".\t" + tempExercise.getName() + "\t\t" + tempExercise.getDuration());
+                    System.out.println(i + ".\t" + tempExercise.getName() + "\t\t" + tempExercise.getReps());
                 } else {
                     System.out.println(i + ".");
                 }
@@ -198,8 +198,12 @@ public class FitnessTrackerProgram {
         Exercise exercise = new Exercise();
         System.out.print("Insert name of exercise: ");
         exercise.setName(myScanner.nextLine());
-        System.out.print("Insert duration of exercise (in minutes): ");
-        exercise.setDuration(Integer.parseInt(myScanner.nextLine()));
+        System.out.print("Insert nr of reps: ");
+        exercise.setReps(Integer.parseInt(myScanner.nextLine()));
+        System.out.print("Insert nr of sets: ");
+        exercise.setSets(Integer.parseInt(myScanner.nextLine()));
+        System.out.print("If desired, add a short descriptive note: ");
+        exercise.setDescription(myScanner.nextLine());
 
         int occupiedElements = 0;
         for (int i = 0; i < exercises.length; i++) {
@@ -209,18 +213,19 @@ public class FitnessTrackerProgram {
                 exercises[i] = exercise;
 
                 String name = exercise.getName();
-                int duration = exercise.getDuration();
+                int reps = exercise.getReps();
+                int sets = exercise.getSets();
 
                 clearTerminal();
-                System.out.println("\nExercise with name '" + name + "', and duration " + duration
-                        + " mins added!" + Messages.RETURN_TO_MAIN_MENU);
+                System.out.println("\nExercise '" + name + "', consisting of " + reps
+                        + " reps * " + sets + " sets, added." + Messages.RETURN_TO_MAIN_MENU);
                 break;
             }
         }
 
         if (occupiedElements >= exercises.length) {
             System.out
-                    .println("\nThe list is full. \n\n" + Messages.RETURN_TO_MAIN_MENU);
+                    .println("\nThe workout is full. \n\n" + Messages.RETURN_TO_MAIN_MENU);
         }
 
         saveExercisesToWorkoutFile();
@@ -284,7 +289,7 @@ public class FitnessTrackerProgram {
                     notFound = false;
                     Exercise exercise1 = exercises[place1 - 1];
                     String exerciseName = exercise1.getName();
-                    System.out.println("Place for " + exerciseName + " has been chosen");
+                    System.out.println("Place for '" + exerciseName + "' has been chosen");
 
                     System.out.print("\nChoose place of exercise to switch with: ");
                     int place2 = Integer.parseInt(myScanner.nextLine()) - 1;

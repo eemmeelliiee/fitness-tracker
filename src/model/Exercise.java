@@ -2,16 +2,11 @@ package model;
 public class Exercise {
 
     private String name;
-    private int duration;
+    private int reps;
+    private int sets;
     private String description;
 
     public Exercise() {
-    }
-
-    public Exercise(String name, int duration, String description) {
-        this.name = name;
-        this.duration = duration;
-        this.description = description;
     }
 
     public String getName() {
@@ -22,12 +17,20 @@ public class Exercise {
         this.name = name;
     }
 
-    public int getDuration() {
-        return duration;
+    public int getReps() {
+        return reps;
     }
 
-    public void setDuration(int age) {
-        this.duration = age;
+    public void setReps(int age) {
+        this.reps = age;
+    }
+
+    public int getSets(){
+        return sets;
+    }
+
+    public void setSets(int sets){
+        this.sets = sets;
     }
 
     public String getDescription(){
