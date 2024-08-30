@@ -13,7 +13,7 @@ public class FitnessTrackerProgram {
 
     private Scanner myScanner;
     private Exercise[] exercises;
-    private String workoutFileName;
+    private String workoutFileTitle;
 
     public void start(int length) {
 
@@ -28,7 +28,7 @@ public class FitnessTrackerProgram {
 
         System.out.println("\nChoose an existing workout, or create a new one by assigning it an original title.");
         System.out.print("Title: ");
-        workoutFileName = myScanner.nextLine();
+        workoutFileTitle = myScanner.nextLine();
 
         loadExercisesFromWorkoutFile();
 
@@ -96,7 +96,7 @@ public class FitnessTrackerProgram {
 
     private void loadExercisesFromWorkoutFile() {
         File directory = new File("workouts");
-        File file = new File(directory, workoutFileName);
+        File file = new File(directory, workoutFileTitle);
 
         if (file.exists()) {
             try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
@@ -112,25 +112,25 @@ public class FitnessTrackerProgram {
                     }
                 }
                 clearTerminal();
-                System.out.println("Workout '" + workoutFileName + "' was chosen.");
+                System.out.println("Workout '" + workoutFileTitle + "' was chosen.");
             } catch (IOException e) {
                 clearTerminal();
-                System.out.println("Error finding workout: " + workoutFileName);
+                System.out.println("Error finding workout: " + workoutFileTitle);
             }
         } else if (!file.exists()) {
             try {
                 file.createNewFile();
                 clearTerminal();
-                System.out.println("A new workout with title '" + workoutFileName + "' has been created!");
+                System.out.println("A new workout with title '" + workoutFileTitle + "' has been created!");
             } catch (IOException e) {
-                System.out.println("Error creating workout: " + workoutFileName);
+                System.out.println("Error creating workout: " + workoutFileTitle);
             }
         }
     }
 
     private void saveExercisesToWorkoutFile() {
         File directory = new File("workouts");
-        File file = new File(directory, workoutFileName);
+        File file = new File(directory, workoutFileTitle);
 
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(file))) {
             for (Exercise exercise : exercises) {
@@ -145,7 +145,7 @@ public class FitnessTrackerProgram {
     }
 
     private void printChoices() {
-        System.out.println("\nTo operate on your workout '" + workoutFileName + "', please choose desired option:");
+        System.out.println("\nTo operate on your workout '" + workoutFileTitle + "', please choose desired option:");
         System.out.println("--------------------------------");
         System.out.println("## MAIN MENU ##\nFollowing are your options: \n");
         System.out.println("1: Insert an exercise");
