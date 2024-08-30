@@ -1,1 +1,1 @@
-A simple fitness tracking program to manage exercises in associated workouts.
+A simple fitness tracking program to manage workouts and associated exercises.
