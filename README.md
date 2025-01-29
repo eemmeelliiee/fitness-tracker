@@ -8,3 +8,7 @@ This is a simple fitness tracking program in Java to manage workouts and associa
 
 2. Manage exercises for that workout:
 ![alt text](images/main-menu.png)
+
+## -----------------------------------------------------------------------------------------------------------
+
+Thank you for stopping by and viewing my project!
